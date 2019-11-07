@@ -1,0 +1,10 @@
+## nginx-ingress configuration for the development environment
+## This file inherit from values.common.yaml
+## Ref: https://github.com/helm/charts/blob/master/stable/nginx-ingress/values.yaml
+
+controller:
+  service:
+    loadBalancerSourceRanges:
+      # lock down access to a given list of IP range
+      - 1.2.3.4/32
+
