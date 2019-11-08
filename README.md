@@ -26,9 +26,13 @@ application directory.
 ```
 ├── external-dns
 │   ├── Makefile
-│   └── README.md
+│   ├── README.md
+│   ├── values.common.yaml
+│   ├── values.development.yaml
+│   └── values.minikube.yaml
+│   └── values.production.yaml
 |
-├── limit-range
+├── limit-ranges
 │   ├── Makefile
 |   |
 |   |       # Basic example of what the Makefile can look like to deploy some
@@ -43,6 +47,14 @@ application directory.
 |   |
 │   ├── README.md
 │   ├── development.yaml
+│   └── minikube.yaml
+│   └── production.yaml
+|
+├── namespaces
+│   ├── Makefile
+│   ├── README.md
+│   ├── development.yaml
+│   ├── minikube.yaml
 │   └── production.yaml
 |
 ├── nginx-ingress                       < Application directories
@@ -50,7 +62,32 @@ application directory.
 │   ├── README.md
 │   ├── values.common.yaml
 │   ├── values.development.yaml
+│   └── values.minikube.yaml
 │   └── values.production.yaml
+|
+├── psp
+│   ├── common
+│   │   └── app-default.yaml
+│   ├── development
+│   ├── minikube
+│   ├── production
+│   ├── Makefile
+│   └── README.md
+├── rbac
+│   ├── common
+│   │   └── cicd-user.yaml
+│   ├── development
+│   │   ├── cicd-user.yaml
+│   │   ├── user-1.yaml
+│   │   └── user-2.yaml
+│   ├── minikube
+│   │   ├── cicd-user.yaml
+│   │   ├── user-1.yaml
+│   │   └── user-2.yaml
+│   ├── production
+│   │   └── cicd-user.yaml
+│   ├── Makefile
+│   └── README.md
 |
 ├── env.development.mk                  <  Environment files
 |
@@ -62,7 +99,8 @@ application directory.
 |
 |       # Applications to deploy, order is important
 |       APPS = \
-|       	limitrange \
+|       	namespaces \
+|       	limit-ranges \
 |       	nginx-ingress \
 |       	external-dns \
 |       	psp \
@@ -75,6 +113,7 @@ application directory.
 |       EXTERNAL_DNS_CHART_VERSION = 2.6.4
 |
 |
+├── env.minikube.mk
 ├── env.production.mk
 ├── Makefile
 ├── README.md
@@ -94,8 +133,8 @@ deploy an application
 
 ```bash
 # deploy all applications to the development cluster
-$ ENVIRONMENT=development make deploy-all
+$ ENVIRONMENT=minikube make deploy-all
 
-# deploy a specific application to the development cluster
-$ ENVIRONMENT=development make deploy-nginx-ingress
+# deploy a single application to the minikube cluster
+$ ENVIRONMENT=minikube make deploy-nginx-ingress
 ```
