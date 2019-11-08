@@ -11,6 +11,9 @@ version can be deployed to a given environment. Configuration can be shared
 accross environment. The steps to execute the deployment of an application are
 independant from each other which provide flexibility.
 
+> Bear in mind that you can adjust this framework to deploy components that are
+unrelated to Kubernetes, for example it can adjusted to apply a Terraform state.
+
 ## Overview
 
 Each application should be stored into its own directory. Each Makefile
@@ -131,9 +134,18 @@ deploy an application
 
 ## Usage
 
+When deploying infrastructure components it is wise to test new settings in a
+local or test environment.
+In the following example, we use
+[Minikube](https://github.com/kubernetes/minikube) in order to test new
+configuration.
+
 ```bash
 # display help
 $ ENVIRONMENT=minikube make help
+
+# start minikube
+$ minikube start
 
 # deploy all applications to the development cluster
 $ ENVIRONMENT=minikube make deploy-all
