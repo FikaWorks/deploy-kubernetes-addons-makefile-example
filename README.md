@@ -132,6 +132,9 @@ deploy an application
 ## Usage
 
 ```bash
+# display help
+$ ENVIRONMENT=minikube make help
+
 # deploy all applications to the development cluster
 $ ENVIRONMENT=minikube make deploy-all
 
