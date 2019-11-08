@@ -1,3 +1,6 @@
+include ../env.$(ENVIRONMENT).mk
+include ../common.mk
+
 .PHONY: deploy
 deploy:
-	echo TODO
+	kubectl apply -f ./common -f ./$(ENVIRONMENT)
