@@ -7,7 +7,8 @@ AZURE_KEY_VAULT_NAME ?= my-infra
 
 # Applications to deploy, order is important
 APPS = \
-	limitrange \
+	namespaces \
+	limit-ranges \
 	nginx-ingress \
 	external-dns \
 	psp \

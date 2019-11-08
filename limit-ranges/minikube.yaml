@@ -2,7 +2,7 @@ apiVersion: v1
 kind: LimitRange
 metadata:
   name: set-defaults-limits-requests
-  namespace: production-v1
+  namespace: user-1
 spec:
   limits:
   - default:
@@ -19,7 +19,7 @@ apiVersion: v1
 kind: LimitRange
 metadata:
   name: set-defaults-limits-requests
-  namespace: production-v2
+  namespace: user-2
 spec:
   limits:
   - default:
