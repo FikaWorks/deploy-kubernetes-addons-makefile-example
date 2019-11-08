@@ -1,0 +1,68 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: org:cicd-user
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts
+  - configmaps
+  - ingresses
+  - secrets
+  - services
+  verbs:
+  - create
+  - get
+  - list
+  - patch
+  - update
+- apiGroups:
+  - batch
+  resources:
+  - cronjobs
+  - jobs
+  verbs:
+  - create
+  - get
+  - list
+  - patch
+  - update
+- apiGroups:
+  - autoscaling
+  resources:
+  - horizontalpodautoscalers
+  verbs:
+  - create
+  - get
+  - list
+  - patch
+  - update
+- apiGroups:
+  - apps
+  - extensions
+  resources:
+  - deployments
+  - ingresses
+  verbs:
+  - create
+  - get
+  - list
+  - patch
+  - update
+
+---
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cicd-user
+  namespace: user-1
+subjects:
+- kind: User
+  name: cicd-user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: org:cicd-user
+  apiGroup: rbac.authorization.k8s.io
