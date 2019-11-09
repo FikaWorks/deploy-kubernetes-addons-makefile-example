@@ -1,10 +1,9 @@
-Infrastructure deployment using make
-====================================
+Deploy Kubernetes addons using Makefiles
+========================================
 
 > This repository demonstrate how **make** and **Makefiles** can be used to
-deploy and organize configuration of infrastructure related components such as
-reverse proxies, observability applications or any components enhancing the
-native capabilities of Kubernetes.
+deploy and organize configuration of Kubernetes addons such as nginx-ingress,
+external-dns, cluster-autoscaler, etc.
 
 > This method is fairly simple and let you decide what application and which
 version can be deployed to a given environment. Configuration can be shared
@@ -12,7 +11,8 @@ accross environment. The steps to execute the deployment of an application are
 independant from each other which provide flexibility.
 
 > Bear in mind that you can adjust this framework to deploy components that are
-unrelated to Kubernetes, for example it can adjusted to apply a Terraform state.
+unrelated to Kubernetes, for example it can adjusted to apply a Terraform
+state.
 
 ## Overview
 
@@ -23,8 +23,8 @@ components.
 
 When executing the command `make deploy-all` from the root, make will loop
 through all the application defined in the `APPS` variable from the
-`env.<ENVIRONMENT>.mk` file then call the `deploy` target from each
-application directory.
+`env.<ENVIRONMENT>.mk` file then call the `deploy` target from each application
+directory.
 
 ```
 ├── external-dns
@@ -135,10 +135,8 @@ deploy an application
 ## Usage
 
 When deploying infrastructure components it is wise to test new settings in a
-local or test environment.
-In the following example, we use
-[Minikube](https://github.com/kubernetes/minikube) in order to test new
-configuration.
+local or test environment. In the following example, we use
+[Minikube][minikube] in order to test new configuration.
 
 ```bash
 # display help
@@ -153,3 +151,5 @@ $ ENVIRONMENT=minikube make deploy-all
 # deploy a single application to the minikube cluster
 $ ENVIRONMENT=minikube make deploy-nginx-ingress
 ```
+
+[minikube]: https://github.com/kubernetes/minikube
